@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Message For You ❤️</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden}
+body{background:#050505;color:#fff;font-family:Georgia,"Times New Roman",serif}
+
+.screen{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;transform:scale(1.02);
+  transition:opacity .65s ease,transform .65s ease,visibility .65s;
+}
+.screen.active{opacity:1;visibility:visible;transform:scale(1)}
+
+.photo-bg{
+  position:absolute;inset:0;
+  background-position:center;
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-color:#000;
+  z-index:-2;
+}
+.photo-bg:after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.25));
+}
+.opening-photo{background-image:url("opening.png");}
+
+
+.center{text-align:center;position:relative;z-index:2}
+.photo-controls{position:absolute;bottom:8%;left:0;right:0;text-align:center;z-index:3}
+
+.continue{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:175px;padding:14px 30px;border:1px solid rgba(255,255,255,.8);
+  border-radius:999px;background:rgba(0,0,0,.48);color:#fff;
+  font:600 14px Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;
+  cursor:pointer;backdrop-filter:blur(8px);
+  box-shadow:0 10px 35px rgba(0,0,0,.4);transition:.25s;
+}
+.continue:hover{transform:translateY(-3px);background:rgba(255,255,255,.16)}
+.continue:active{transform:scale(.96)}
+
+.counter{
+  position:absolute;top:24px;left:0;right:0;text-align:center;
+  font:13px Arial,sans-serif;letter-spacing:3px;opacity:.8;z-index:3;
+}
+
+.insta-card{
+  width:min(90%,500px);padding:38px 25px;text-align:center;
+  border-radius:28px;background:rgba(0,0,0,.55);backdrop-filter:blur(12px);
+  box-shadow:0 20px 70px rgba(0,0,0,.55);
+}
+.instagram-logo{
+  width:90px;height:90px;margin:0 auto 20px;border:5px solid #fff;
+  border-radius:25px;position:relative;
+}
+.instagram-logo:before{
+  content:"";position:absolute;width:37px;height:37px;border:5px solid #fff;
+  border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);
+}
+.instagram-logo:after{
+  content:"";position:absolute;width:10px;height:10px;background:#fff;
+  border-radius:50%;right:12px;top:12px;
+}
+.insta-title{font:14px Arial,sans-serif;letter-spacing:4px;opacity:.8}
+.insta-id{font:700 27px Arial,sans-serif;margin:12px 0 28px}
+
+.question .photo-bg{
+  background-size:contain;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-color:#000;
+}
+.question1{background-image:url("question1.png")}
+.question2{background-image:url("question2.png")}
+.question1.photo-bg:after,.question2.photo-bg:after{
+  background:rgba(0,0,0,.05);
+}
+.question .photo-controls{bottom:6%}
+
+.hint{
+  position:absolute;bottom:22px;left:0;right:0;text-align:center;
+  font:11px Arial,sans-serif;letter-spacing:1.5px;opacity:.6;z-index:3;
+}
+@media(max-width:600px){
+  .continue{min-width:160px;padding:13px 23px}
+  .insta-id{font-size:23px}
+  .insta-card{padding:30px 18px}
+}
+</style>
+</head>
+<body>
+
+<!-- OPENING PHOTO -->
+<section class="screen active" id="photoScreen1">
+  <div class="photo-bg opening-photo"></div>
+  <div class="photo-controls">
+    <button class="continue" onclick="show('instagram')">Continue ♥</button>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section class="screen" id="instagram">
+  <div class="photo-bg opening-photo"></div>
+  <div class="center insta-card">
+    <div class="instagram-logo"></div>
+    <div class="insta-title">Instagram</div>
+    <div class="insta-id">@__lokesh__106</div>
+    <button class="continue" onclick="show('question1')">Continue ♥</button>
+  </div>
+</section>
+
+<!-- QUESTIONS -->
+<section class="screen question" id="question1">
+  <div class="photo-bg question1"></div>
+  <div class="photo-controls"><button class="continue" onclick="show('question2')">Continue ♥</button></div>
+</section>
+
+<section class="screen question" id="question2">
+  <div class="photo-bg question2"></div>
+  <div class="photo-controls"><button class="continue" onclick="openInstagram()">Continue ♥</button></div>
+</section>
+
+<script>
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function openInstagram(){
+  window.location.href="https://www.instagram.com/__lokesh__106/?hl=en";
+}
+</script>
+</body>
+</html>
